@@ -38,3 +38,26 @@ function Book(title, numOfPages, readStatus) {
   
   // newObj inherited all the properties and methods, including the print method, from the PrintStuff function. Now newObj can call print directly, even though we never created a print () method on it.
   newObj.print (); //I am a new Object and I can print.
+
+  //Creates an object constructor via object literal syntax
+function Student() {
+}
+
+//Add a sayName function to the Student Prototype that console.logs the instanced objects name
+Student.prototype.sayName = function() {
+  console.log(this.name)
+}
+
+//creates an object constructor that takes in a name and assigns the passed in name and integer 8 to the declared attributes
+function EighthGrader(name) {
+  this.name = name
+  this.grade = 8
+}
+
+//from Student.prototype: contains a sayName function that logs the instanced objects name
+//from Object.create: creates a new instance of the object with the specified prototype object and properties
+EighthGrader.prototype = Object.create(Student.prototype)
+//Object.create() sets up a copy to be inherited from. Strict = asignment will change the literal and erase or clear the original object
+const carl = new EighthGrader("carl")
+carl.sayName() // console.logs "carl"
+carl.grade // 8
